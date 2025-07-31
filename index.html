@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suhani Tyagi - Aspiring Software Developer</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Custom styles for Aurora Effect */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #E2E8F0;
+            /* slate-200 */
+            overflow-x: hidden;
+            /* Prevent horizontal scroll */
+        }
+
+        /* The Aurora/Spotlight Effect */
+        #spotlight {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(45, 212, 191, 0.15) 0%, rgba(45, 212, 191, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            /* Make it non-interactive */
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s;
+            z-index: -1;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #27272A;
+            border-radius: 10px;
+        }
+
+        /* zinc-800 */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3F3F46;
+        }
+
+        /* zinc-700 */
+
+        /* Project card base styles and hover glow effect */
+        .project-card {
+            transition: all 0.3s ease-in-out;
+        }
+
+        .project-card:hover {
+            border-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(45, 212, 191, 0.1);
+            transform: scale(1.02);
+        }
+
+        /* Highlight effect for project cards */
+        #project-list:hover>.project-card {
+            opacity: 0.5;
+        }
+
+        #project-list>.project-card:hover {
+            opacity: 1;
+        }
+
+        /* Highlight effect for skill cards */
+        .skill-card {
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        #skills-list:hover>.skill-card {
+            opacity: 0.5;
+        }
+
+        #skills-list>.skill-card:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- The spotlight div that follows the cursor -->
+    <div id="spotlight"></div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container mx-auto max-w-4xl px-6 py-6">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-xl font-bold tracking-wider text-white">Suhani Tyagi</a>
+                <nav class="flex items-center space-x-5">
+                    <a href="https://github.com/inahus99" target="_blank" rel="noopener noreferrer"
+                        class="text-slate-400 hover:text-white transition-colors duration-300"><i data-lucide="github"
+                            class="w-5 h-5"></i></a>
+                    <a href="https://www.linkedin.com/in/suhani-tyagi-63059b259?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                        target="_blank" rel="noopener noreferrer"
+                        class="text-slate-400 hover:text-white transition-colors duration-300"><i data-lucide="linkedin"
+                            class="w-5 h-5"></i></a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"
+                        class="text-slate-400 hover:text-white transition-colors duration-300"><i data-lucide="twitter"
+                            class="w-5 h-5"></i></a>
+                    <a href="mailto:suhani05tyagi@gmail.com" target="_blank" rel="noopener noreferrer"
+                        class="text-slate-400 hover:text-white transition-colors duration-300"><i data-lucide="mail"
+                            class="w-5 h-5"></i></a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Wrapper -->
+    <div id="main-content">
+        <main class="container mx-auto max-w-4xl px-6">
+
+            <!-- Hero Section -->
+            <section id="hero" class="flex flex-col justify-center pt-24 pb-12">
+                <h1 class="text-4xl md:text-5xl font-bold leading-tight text-white">Aspiring Software Developer</h1>
+                <p class="mt-4 text-lg text-slate-400 max-w-2xl">
+                    Converting ideas to code.
+                </p>
+                <div class="mt-8 flex flex-wrap gap-4">
+                    <a href="#projects"
+                        class="inline-block bg-teal-400/10 text-teal-300 font-semibold px-6 py-2 rounded-full border border-teal-400/20 hover:bg-teal-400/20 transition-all duration-300">
+                        View Projects
+                    </a>
+                    <a href="https://drive.google.com/file/d/1mf7YUHxDf9YtINRUQkeqF_-Iou3PDFTK/view?usp=sharing"
+                        target="_blank" rel="noopener noreferrer"
+                        class="inline-block bg-slate-400/10 text-slate-300 font-semibold px-6 py-2 rounded-full border border-slate-400/20 hover:bg-slate-400/20 transition-all duration-300">
+                        View Resume
+                    </a>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section id="about" class="py-16 lg:py-20">
+                <div class="max-w-3xl">
+                    <h2 class="text-2xl font-bold text-white mb-4">About Me</h2>
+                    <p class="text-slate-300 leading-relaxed">
+                    <p>
+                        I'm a fourth-year computer science student passionate about full-stack development.
+                        I specialize in building end-to-end applications using the MERN stack (MongoDB, Express.js,
+                        React, Node.js)
+                        and enjoy solving challenging problems on LeetCode, where I’ve earned the Knight badge.
+                    </p>
+
+                    <p><strong>Some of my key projects include:</strong></p>
+
+                    <ul>
+                        <li><strong>CURATIONS</strong> – A smart bookmarking app that supports 4+ content types,
+                            allowing users to save and organize links, notes, code snippets, and more.</li>
+
+                        <li><strong>CLAUSEWISE</strong> – An AI-powered legal document analyzer that breaks down complex
+                            legal contracts into simplified, categorized clauses.</li>
+
+                        <li><strong>LINKIFY</strong> – A lightweight file-sharing tool that generates a secure link to
+                            share any file instantly, without needing sign-up.</li>
+                    </ul>
+                    </p>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills" class="py-16 lg:py-20">
+                <div>
+                    <h2 class="text-2xl font-bold text-white mb-8">Skills & Technologies</h2>
+                    <div id="skills-list" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                        <div
+                            class="skill-card flex items-center space-x-3 bg-zinc-900/50 border border-zinc-800 rounded-lg p-4">
+                            <i data-lucide="database" class="w-6 h-6 text-teal-400"></i><span
+                                class="font-semibold text-slate-300">MongoDB</span></div>
+                        <div
+                            class="skill-card flex items-center space-x-3 bg-zinc-900/50 border border-zinc-800 rounded-lg p-4">
+                            <i data-lucide="server" class="w-6 h-6 text-teal-400"></i><span
+                                class="font-semibold text-slate-300">Express.js</span></div>
+                        <div
+                            class="skill-card flex items-center space-x-3 bg-zinc-900/50 border border-zinc-800 rounded-lg p-4">
+                            <i data-lucide="atom" class="w-6 h-6 text-teal-400"></i><span
+                                class="font-semibold text-slate-300">React</span></div>
+                        <div
+                            class="skill-card flex items-center space-x-3 bg-zinc-900/50 border border-zinc-800 rounded-lg p-4">
+                            <i data-lucide="leaf" class="w-6 h-6 text-teal-400"></i><span
+                                class="font-semibold text-slate-300">Node.js</span></div>
+                        <div
+                            class="skill-card flex items-center space-x-3 bg-zinc-900/50 border border-zinc-800 rounded-lg p-4">
+                            <i data-lucide="braces" class="w-6 h-6 text-teal-400"></i><span
+                                class="font-semibold text-slate-300">JavaScript</span></div>
+                        <div
+                            class="skill-card flex items-center space-x-3 bg-zinc-900/50 border border-zinc-800 rounded-lg p-4">
+                            <i data-lucide="wind" class="w-6 h-6 text-teal-400"></i><span
+                                class="font-semibold text-slate-300">Tailwind CSS</span></div>
+                        <div
+                            class="skill-card flex items-center space-x-3 bg-zinc-900/50 border border-zinc-800 rounded-lg p-4">
+                            <i data-lucide="code-2" class="w-6 h-6 text-teal-400"></i><span
+                                class="font-semibold text-slate-300">Supabase</span></div>
+                        <div
+                            class="skill-card flex items-center space-x-3 bg-zinc-900/50 border border-zinc-800 rounded-lg p-4">
+                            <i data-lucide="git-branch" class="w-6 h-6 text-teal-400"></i><span
+                                class="font-semibold text-slate-300">Git & GitHub</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="py-16 lg:py-20">
+                <div>
+                    <h2 class="text-2xl font-bold text-white mb-8">Featured Projects</h2>
+                    <div id="project-list" class="grid md:grid-cols-2 gap-6">
+                        <a href="#project/project1"
+                            class="project-card block bg-zinc-900/50 border border-zinc-800 rounded-lg p-6 group transition-all duration-300">
+                            <h3 class="text-xl font-bold text-white mb-2">Curations</h3>
+                            <p class="text-slate-400 mb-4">A bookmarking app that lets users save and organize different
+                                types of content with real-time sync and media previews.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span
+                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">JavaScript</span>
+                                    <span
+                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">React.js</span>
+                                <span
+                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">Node.js</span><span
+                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">Express</span><span
+                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">SupaBase</span>
+                            </div>
+                        </a>
+                        <a href="#project/project2"
+                            class="project-card block bg-zinc-900/50 border border-zinc-800 rounded-lg p-6 group transition-all duration-300">
+                            <h3 class="text-xl font-bold text-white mb-2">ClauseWise</h3>
+                            <p class="text-slate-400 mb-4">A legal-tech tool for intelligent clause management and
+                                analysis from legal documents.</p>
+                            <div class="flex flex-wrap gap-2"><span
+                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">JavaScript</span><span
+                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">React.js</span><span
+                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">Node.js</span>
+                                    <span
+                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">MongoDB</span>
+                            </div>
+                        </a>
+                        <a href="#project/project3"
+                            class="project-card block bg-zinc-900/50 border border-zinc-800 rounded-lg p-6 group transition-all duration-300">
+                            <h3 class="text-xl font-bold text-white mb-2">Linkify</h3>
+                            <p class="text-slate-400 mb-4">A streamlined utility for sharing any type of file using
+                                links only.</p>
+                            <div class="flex flex-wrap gap-2">
+                                  <span
+                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">JavaScript</span>
+                                      <span
+                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">React.js</span>
+                                <span
+                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">Node.js</span><span
+                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">Express</span><span
+                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">MongoDB Atlas</span>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer id="footer" class="border-t border-zinc-800/50">
+            <div class="container mx-auto max-w-4xl px-6 py-6 text-center text-slate-500">
+                &copy; 2025 @Suhani Tyagi.
+            </div>
+        </footer>
+    </div>
+
+   <div id="project-detail-page" class="hidden">
+  <div class="mx-auto max-w-6xl px-6 py-20 lg:py-32 space-y-16">
+    <!-- Back link -->
+    <a href="#" class="flex items-center text-slate-400 hover:text-white transition-colors">
+      <i data-lucide="arrow-left" class="w-5 h-5 mr-2"></i> Back to All Projects
+    </a>
+
+    <!-- Title -->
+    <header class="space-y-4">
+      <h1 id="project-title" class="text-4xl md:text-5xl font-extrabold text-white"></h1>
+      <div class="h-1 w-24 bg-teal-400"></div>
+    </header>
+
+    <!-- Overview -->
+    <section class="space-y-6">
+      <h2 class="text-2xl font-bold text-white">Project Overview</h2>
+      <div id="project-description" class="prose prose-invert max-w-none text-slate-300"></div>
+      <div id="project-links" class="flex flex-wrap gap-4"></div>
+    </section>
+
+    <!-- Media Grid: Video + Gallery side‑by‑side on large screens -->
+    <section class="grid gap-10 lg:grid-cols-2">
+      <!-- Responsive 16:9 video wrapper -->
+      <div id="video-section" class="hidden rounded-3xl overflow-hidden border border-zinc-800 shadow-xl">
+        <div class="relative w-full pb-[56.25%]">
+          <iframe id="project-video" class="absolute inset-0 h-full w-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <!-- Image Gallery -->
+      <div class="space-y-4">
+        <h2 class="text-2xl font-bold text-white">Image Gallery</h2>
+        <div id="project-gallery" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+      </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section>
+      <h2 class="text-2xl font-bold text-white mb-4">Tech Stack</h2>
+      <div id="project-tech-stack" class="flex flex-wrap gap-2"></div>
+    </section>
+  </div>
+</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- DATA ---
+            const projectsData = {
+                'project1': {
+                    title: 'Curations',
+                    description: `
+  <p>A bookmarking app that lets users save and organize different types of content with real-time sync and media previews.</p>
+`,
+                    liveDemoUrl: 'https://curations-vert.vercel.app/',
+                    githubUrl: 'https://github.com/inahus99/Curations',
+                    videoUrl: 'https://www.youtube.com/embed/kazQYEIR-zg?rel=0', 
+                    images: [
+                        'https://i.ibb.co/JwHLt3sb/Screenshot-2025-07-18-123516.png',
+                        'https://i.ibb.co/Z18J7jgS/Screenshot-2025-07-30-192906.png'
+                    ],
+                    techStack: ['JavaScript', 'React.js', 'Node.js', 'Supabase', 'Tailwind CSS']
+                },
+                'project2': {
+                    title: 'ClauseWise',
+                    description: `<p>A streamlined utility for shortening and managing web links efficiently. Built with a Node.js backend and a clean, responsive interface.</p>`,
+                    githubUrl: 'https://github.com/inahus99/clauseWise',
+                    videoUrl: 'https://www.youtube.com/embed/YWTO2TKXDCg?ref=0',
+                    images: [
+                        'https://i.ibb.co/tF0XCGc/Screenshot-2025-07-30-173648.png',
+                        'https://i.ibb.co/dJrstgmk/Screenshot-2025-07-31-102411.png'
+                    ],
+                    techStack: ['JavaScript','React.js','Node.js', 'Express', 'MongoDB']
+                },
+                'project3': {
+                    title: 'Linkify',
+                    description: `<p>A streamlined utility for sharing any type of file with a link only.</p><p>more about Application in github link below.</p>`,
+                    githubUrl: 'https://github.com/inahus99/Linkify',
+                    videoUrl: "https://www.youtube.com/embed/FtkX-MdfY-U?rel=0",
+                    images: [
+                        'https://i.ibb.co/7wq7xyx/Screenshot-2025-07-30-175712.png',
+                        'https://i.ibb.co/bRBcVmKV/Screenshot-2025-07-30-180138.png'
+                    ],
+                    techStack: ['React.js', 'Node.js', 'Express', 'MongoDB Atlas']
+                },
+
+            };
+
+            // --- DOM Elements ---
+            const mainContent = document.getElementById('main-content');
+            const projectDetailPage = document.getElementById('project-detail-page');
+            const projectTitleEl = document.getElementById('project-title');
+            const projectDescriptionEl = document.getElementById('project-description');
+            const projectLinksEl = document.getElementById('project-links');
+            const videoSectionEl = document.getElementById('video-section');
+            const projectVideoEl = document.getElementById('project-video');
+            const projectGalleryEl = document.getElementById('project-gallery');
+            const projectTechStackEl = document.getElementById('project-tech-stack');
+            const spotlight = document.getElementById('spotlight');
+
+            // --- Router ---
+            const router = () => {
+                const hash = window.location.hash || '#';
+                if (hash.startsWith('#project/')) {
+                    const projectId = hash.substring('#project/'.length);
+                    renderProjectPage(projectId);
+                } else {
+                    renderMainPage();
+                }
+            };
+
+            // --- Render Functions ---
+            const renderMainPage = () => {
+                projectDetailPage.classList.add('hidden');
+                mainContent.classList.remove('hidden');
+            };
+
+            const renderProjectPage = (projectId) => {
+                const project = projectsData[projectId];
+                if (!project) { window.location.hash = '#'; return; }
+                mainContent.classList.add('hidden');
+                projectDetailPage.classList.remove('hidden');
+
+                projectTitleEl.textContent = project.title;
+                projectDescriptionEl.innerHTML = project.description;
+
+                projectLinksEl.innerHTML = '';
+                if (project.githubUrl) {
+                    projectLinksEl.innerHTML += `
+                        <a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-slate-400/10 text-slate-300 font-semibold px-4 py-2 rounded-full border border-slate-400/20 hover:bg-slate-400/20 transition-all duration-300">
+                            <i data-lucide="github" class="w-4 h-4 mr-2"></i> GitHub
+                        </a>`;
+                }
+                if (project.liveDemoUrl) {
+                    projectLinksEl.innerHTML += `
+            <a href="${project.liveDemoUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-teal-400/10 text-teal-300 font-semibold px-4 py-2 rounded-full border border-teal-400/20 hover:bg-teal-400/20 transition-all duration-300">
+              <i data-lucide="external-link" class="w-4 h-4 mr-2"></i> Live Demo
+            </a>`;
+                }
+                if (project.videoUrl) {
+                    videoSectionEl.classList.remove('hidden');
+                    projectVideoEl.src = project.videoUrl;
+                } else {
+                    videoSectionEl.classList.add('hidden');
+                }
+
+                projectGalleryEl.innerHTML = '';
+                if (project.images && Array.isArray(project.images)) {
+                    project.images.forEach(src => {
+                        const img = document.createElement('img');
+                        img.src = src;
+                        img.alt = `${project.title} screenshot`;
+                        img.className = 'rounded-lg border border-zinc-800 w-full object-cover';
+                        img.onerror = () => { img.src = 'https://placehold.co/600x400/000000/FFFFFF?text=Image+Not+Found'; };
+                        projectGalleryEl.appendChild(img);
+                    });
+                }
+
+                projectTechStackEl.innerHTML = '';
+                if (project.techStack && Array.isArray(project.techStack)) {
+                    project.techStack.forEach(tech => {
+                        const span = document.createElement('span');
+                        span.className = 'bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full';
+                        span.textContent = tech;
+                        projectTechStackEl.appendChild(span);
+                    });
+                }
+
+                lucide.createIcons();
+                window.scrollTo(0, 0);
+            };
+
+            // --- Event Listeners ---
+            window.addEventListener('hashchange', router);
+
+            // General mousemove for the aurora spotlight
+            window.addEventListener('mousemove', (e) => {
+                spotlight.style.left = e.clientX + 'px';
+                spotlight.style.top = e.clientY + 'px';
+            });
+
+            router(); 
+
+            lucide.createIcons();
+        });
+    </script>
+</body>
+
+</html>
