@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suhani Tyagi - Aspiring Software Developer</title>
+    <title>Suhani Tyagi - Software Developer</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -153,33 +153,44 @@
                 </div>
             </section>
 
-            <!-- About Section -->
-            <section id="about" class="py-16 lg:py-20">
-                <div class="max-w-3xl">
-                    <h2 class="text-2xl font-bold text-white mb-4">About Me</h2>
-                    <p class="text-slate-300 leading-relaxed">
-                    <p>
-                        I'm a fourth-year computer science student passionate about full-stack development.
-                        I specialize in building end-to-end applications using the MERN stack (MongoDB, Express.js,
-                        React, Node.js)
-                        and enjoy solving challenging problems on LeetCode, where I’ve earned the Knight badge.
-                    </p>
+       <!-- About Section -->
+<section id="about" class="py-16 lg:py-20">
+  <div class="max-w-3xl mx-auto px-4">
+    <div
+      class="about-card relative bg-zinc-900/50 border border-zinc-800 rounded-2xl p-8 shadow-lg transform transition duration-300 ease-out hover:scale-102 hover:shadow-xl fade-up"
+    >
+      <h2 class="text-2xl lg:text-3xl font-bold text-white mb-4">About Me</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        I’m a fourth-year student passionate about full-stack development. I build
+        end-to-end applications with the <span class="font-semibold text-white">MERN stack</span>
+        (MongoDB, Express.js, React, Node.js) and love solving challenging LeetCode
+        problems—I've earned the Knight badge!
+      </p>
 
-                    <p><strong>Some of my key projects include:</strong></p>
+      <h3 class="text-xl font-semibold text-white mb-3">Key Projects</h3>
+      <ul class="list-inside list-disc space-y-2 text-slate-300">
+        <li>
+          <span class="font-semibold text-white">CURATIONS</span> – A smart bookmarking
+          platform supporting 4+ content types: links, notes, code snippets, and more.
+        </li>
+        <li>
+          <span class="font-semibold text-white">CLAUSEWISE</span> – An AI-powered legal
+          analyzer that parses and categorizes complex contract clauses.
+        </li>
+        <li>
+          <span class="font-semibold text-white">COMPLYSCAN</span> – A real-time web
+          auditor for GDPR/CCPA compliance, spotting hidden trackers, missing banners,
+          and over-persistent cookies.
+        </li>
+        <li>
+         
+  <span class="font-semibold text-white">LINKIFY</span> – An Application that instantly generates secure, expiring links for any file type.
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-                    <ul>
-                        <li><strong>CURATIONS</strong> – A smart bookmarking app that supports 4+ content types,
-                            allowing users to save and organize links, notes, code snippets, and more.</li>
-
-                        <li><strong>CLAUSEWISE</strong> – An AI-powered legal document analyzer that breaks down complex
-                            legal contracts into simplified, categorized clauses.</li>
-
-                        <li><strong>LINKIFY</strong> – A lightweight file-sharing tool that generates a secure link to
-                            share any file instantly, without needing sign-up.</li>
-                    </ul>
-                    </p>
-                </div>
-            </section>
 
             <!-- Skills Section -->
             <section id="skills" class="py-16 lg:py-20">
@@ -206,6 +217,16 @@
                             class="skill-card flex items-center space-x-3 bg-zinc-900/50 border border-zinc-800 rounded-lg p-4">
                             <i data-lucide="braces" class="w-6 h-6 text-teal-400"></i><span
                                 class="font-semibold text-slate-300">JavaScript</span></div>
+                                        <div class="skill-card flex items-center space-x-3 bg-zinc-900/50 border border-zinc-800 rounded-lg p-4">
+  <i data-lucide="braces" class="w-6 h-6 text-teal-400"></i>
+  <span class="font-semibold text-slate-300">Socket.io</span>
+</div>
+
+<div class="skill-card flex items-center space-x-3 bg-zinc-900/50 border border-zinc-800 rounded-lg p-4">
+  <i data-lucide="braces" class="w-6 h-6 text-teal-400"></i>
+  <span class="font-semibold text-slate-300">Puppeteer</span>
+</div>
+
                         <div
                             class="skill-card flex items-center space-x-3 bg-zinc-900/50 border border-zinc-800 rounded-lg p-4">
                             <i data-lucide="wind" class="w-6 h-6 text-teal-400"></i><span
@@ -272,8 +293,23 @@
                                     class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">MongoDB Atlas</span>
                             </div>
                         </a>
-
-                    </div>
+  <a href="#project/project4"
+                            class="project-card block bg-zinc-900/50 border border-zinc-800 rounded-lg p-6 group transition-all duration-300">
+                            <h3 class="text-xl font-bold text-white mb-2">ComplyScan</h3>
+                            <p class="text-slate-400 mb-4">ComplyScan is a real-time web auditing tool that scans any website for GDPR/CCPA violations—like hidden trackers, missing consent banners, and long-lived cookies
+                               </p>
+                            <div class="flex flex-wrap gap-2">
+                                  <span
+                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">JavaScript</span>
+                                      <span
+                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">Socket.io</span>
+                                <span
+                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">Node.js</span><span
+                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">Express</span><span
+                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">Puppeteer</span>
+                            </div>
+                        </a>
+                
                 </div>
             </section>
         </main>
@@ -349,6 +385,7 @@
                 'project2': {
                     title: 'ClauseWise',
                     description: `<p>A streamlined utility for shortening and managing web links efficiently. Built with a Node.js backend and a clean, responsive interface.</p>`,
+                     liveDemoUrl: 'https://clause-wise.vercel.app/',
                     githubUrl: 'https://github.com/inahus99/clauseWise',
                     videoUrl: 'https://www.youtube.com/embed/YWTO2TKXDCg?ref=0',
                     images: [
@@ -368,6 +405,18 @@
                     ],
                     techStack: ['React.js', 'Node.js', 'Express', 'MongoDB Atlas']
                 },
+                 'project4': {
+                    title: 'ComplyScan',
+                    description: `<p>ComplyScan is a real-time web auditing tool that scans any website for GDPR/CCPA violations—like hidden trackers, missing consent banners, and long-lived cookies.</p>`,
+                    githubUrl: 'https://github.com/inahus99/ComplyScan',
+                       
+                    videoUrl: "https://www.youtube.com/embed/miWawT_hv88?rel=0",
+                    images: [
+                        'https://i.ibb.co/N6p2jSvY/Screenshot-2025-08-01-124817.png',
+                        'https://i.ibb.co/gbP98rNF/Screenshot-2025-08-01-122803.png'
+                    ],
+                    techStack: ['React.js', 'Node.js', 'Express', 'MongoDB Atlas']
+                }
 
             };
 
