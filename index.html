@@ -1,523 +1,631 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suhani Tyagi - Software Developer</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Suhani Tyagi - Software Developer</title>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com">// parallax for aurora
+const aurora = document.getElementById('aurora');
+window.addEventListener('mousemove', (e) => {
+  const x = (e.clientX / window.innerWidth  - 0.5) * 8;  // range ~[-4,4]
+  const y = (e.clientY / window.innerHeight - 0.5) * 8;
+  aurora.style.transform = `translate(${x}px, ${y}px)`;
+});</script>
 
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body{font-family:'Inter',sans-serif;background:#000;color:#E2E8F0;overflow-x:hidden}
+    #spotlight{position:fixed;top:0;left:0;width:400px;height:400px;background:radial-gradient(circle,rgba(45,212,191,.15) 0%,rgba(45,212,191,0) 70%);border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);transition:width .3s,height .3s;z-index:-1}
+    ::-webkit-scrollbar{width:8px}
+    ::-webkit-scrollbar-track{background:#000}
+    ::-webkit-scrollbar-thumb{background:#27272A;border-radius:10px}
+    ::-webkit-scrollbar-thumb:hover{background:#3F3F46}
+    .project-card{transition:all .3s ease-in-out}
+    .project-card:hover{border-color:rgba(255,255,255,.1);box-shadow:0 0 20px rgba(45,212,191,.1);transform:scale(1.02)}
+    .tag{background:rgba(45,212,191,.1);color:#99F6E4}
+    .btn{display:inline-flex;align-items:center;gap:.4rem;font-weight:600;border-radius:9999px;padding:.5rem .9rem;border-width:1px;transition:all .2s}
+    .btn-live{border-color:rgba(45,212,191,.25);background:rgba(45,212,191,.08);color:#5eead4}
+    .btn-live:hover{background:rgba(45,212,191,.18)}
+    .btn-gh{border-color:rgba(148,163,184,.25);background:rgba(148,163,184,.08);color:#cbd5e1}
+    .btn-gh:hover{background:rgba(148,163,184,.18)}
+    /* --- Skill pill glow --- */
+.skill-pill{
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: rgba(24,24,27,.6);                /* glass */
+  backdrop-filter: saturate(140%) blur(6px);
+  -webkit-backdrop-filter: saturate(140%) blur(6px);
+}
+.skill-pill::before{
+  content:"";
+  position:absolute; inset:-1px;
+  border-radius: .75rem;                         /* rounded-lg */
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    rgba(34,197,94,.40),
+    rgba(45,212,191,.45),
+    rgba(56,189,248,.40),
+    rgba(168,85,247,.45),
+    rgba(34,197,94,.40)
+  );
+  filter: blur(14px);
+  opacity:0;
+  transition: opacity .35s ease;
+  z-index:-1;
+}
+.skill-pill:hover::before{ opacity:.9; }
 
-    <style>
-        /* Custom styles for Aurora Effect */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #000000;
-            color: #E2E8F0;
-            /* slate-200 */
-            overflow-x: hidden;
-            /* Prevent horizontal scroll */
-        }
+  
+  /* --- extras to make cards feel premium --- */
+  .glow-card {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate; /* keep glow inside */
+  }
+  .glow-card::before {
+    /* animated gradient border glow */
+    content: "";
+    position: absolute; inset: -2px;
+    border-radius: 0.75rem; /* rounded-lg */
+    background: conic-gradient(
+      from 180deg at 50% 50%,
+      rgba(34,197,94,.3),
+      rgba(45,212,191,.35),
+      rgba(56,189,248,.3),
+      rgba(168,85,247,.3),
+      rgba(34,197,94,.3)
+    );
+    filter: blur(18px);
+    opacity: 0;
+    transition: opacity .35s ease;
+    z-index: -1;
+  }
+  .glow-card:hover::before { opacity: .9; }
 
-        /* The Aurora/Spotlight Effect */
-        #spotlight {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(45, 212, 191, 0.15) 0%, rgba(45, 212, 191, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            /* Make it non-interactive */
-            transform: translate(-50%, -50%);
-            transition: width 0.3s, height 0.3s;
-            z-index: -1;
-        }
+  .glass {
+    background: rgba(24,24,27,.6);              /* zinc-900/60 */
+    backdrop-filter: saturate(140%) blur(8px);
+    -webkit-backdrop-filter: saturate(140%) blur(8px);
+  }
 
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
+  /* subtle animated divider under “Featured Projects” */
+  .underline-bling {
+    height: 2px;
+    background: linear-gradient(90deg,
+      rgba(16,185,129,0) 0%,
+      rgba(16,185,129,.7) 25%,
+      rgba(99,102,241,.7) 75%,
+      rgba(99,102,241,0) 100%);
+    background-size: 200% 100%;
+    animation: slide 3.5s linear infinite;
+  }
+  @keyframes slide { to { background-position: -200% 0; } }
 
-        ::-webkit-scrollbar-track {
-            background: #000;
-        }
+/* -------- HERO AURORA + ORBS -------- */
+.aurora-wrap{position:relative;isolation:isolate}
+.aurora{
+  position:absolute;inset:-10% -20%;z-index:-2;pointer-events:none;
+  filter: blur(40px);opacity:.75;transform:translateZ(0);
+  background:
+    radial-gradient(60% 50% at 20% 20%, rgba(16,185,129,.25), transparent 60%),
+    radial-gradient(60% 60% at 80% 30%, rgba(59,130,246,.25), transparent 60%),
+    radial-gradient(50% 50% at 60% 80%, rgba(168,85,247,.25), transparent 60%),
+    radial-gradient(40% 40% at 30% 70%, rgba(45,212,191,.25), transparent 60%);
+  transition: transform .6s ease;
+}
+.orb{position:absolute;width:14px;height:14px;border-radius:9999px;
+  background:rgba(94,234,212,.9);box-shadow:0 0 20px rgba(94,234,212,.8);
+  opacity:.7;animation:float 9s ease-in-out infinite;
+}
+.orb.--b{background:rgba(168,85,247,.9);box-shadow:0 0 20px rgba(168,85,247,.7);animation-duration:11s}
+.orb.--c{background:rgba(59,130,246,.9);box-shadow:0 0 20px rgba(59,130,246,.7);animation-duration:13s}
+@keyframes float{
+  0%,100%{transform:translateY(0) translateX(0)}
+  50%{transform:translateY(-18px) translateX(8px)}
+}
 
-        ::-webkit-scrollbar-thumb {
-            background: #27272A;
-            border-radius: 10px;
-        }
+/* headline underline shimmer */
+.title-underline{
+  height:3px;border-radius:9999px;margin-top:.65rem;width:200px;
+  background:linear-gradient(90deg, rgba(20,184,166,0) 0%, rgba(20,184,166,.8) 40%, rgba(99,102,241,.8) 60%, rgba(99,102,241,0) 100%);
+  background-size:200% 100%; animation:shine 3.8s linear infinite;
+}
+@keyframes shine{to{background-position:-200% 0}}
 
-        /* zinc-800 */
-        ::-webkit-scrollbar-thumb:hover {
-            background: #3F3F46;
-        }
+/* CTA polish */
+.cta{display:inline-flex;align-items:center;gap:.5rem;font-weight:700;border-radius:9999px;
+  padding:.65rem 1.1rem;border:1px solid rgba(45,212,191,.25);transition:transform .18s, background .18s, box-shadow .18s}
+.cta-primary{background:rgba(45,212,191,.12);color:#5eead4}
+.cta-primary:hover{transform:translateY(-1px);background:rgba(45,212,191,.2);box-shadow:0 8px 24px rgba(45,212,191,.15)}
+.cta-ghost{border-color:rgba(148,163,184,.25);background:rgba(148,163,184,.08);color:#e5e7eb}
+.cta-ghost:hover{transform:translateY(-1px);background:rgba(148,163,184,.16)}
+/* stat chip */
+.stat{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem .75rem;border-radius:12px;
+  background:rgba(24,24,27,.6);border:1px solid rgba(63,63,70,.7);backdrop-filter:saturate(140%) blur(6px)}
+/* --- about card glow --- */
+.about-card{
+  position:relative;overflow:hidden;isolation:isolate;
+  background:rgba(24,24,27,.7);
+  backdrop-filter:saturate(140%) blur(8px);
+  -webkit-backdrop-filter:saturate(140%) blur(8px);
+}
+.about-card::before{
+  content:"";position:absolute;inset:-1px;border-radius:1rem;
+  background:linear-gradient(120deg,
+    rgba(45,212,191,.35),
+    rgba(59,130,246,.35),
+    rgba(168,85,247,.35));
+  background-size:200% 200%;animation:moveGradient 6s ease infinite;
+  z-index:-1;
+}
+@keyframes moveGradient{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 
-        /* zinc-700 */
+.big-quote{font-size:3rem;line-height:1;color:rgba(94,234,212,.6);margin-right:.25rem}
+.glow{color:#fff;font-weight:600;position:relative}
+.glow::after{
+  content:"";position:absolute;inset:0;border-radius:4px;
+  box-shadow:0 0 18px rgba(45,212,191,.35);opacity:.6;z-index:-1}
+.fact-chip{
+  font-size:.8rem;padding:.35rem .65rem;border-radius:9999px;
+  background:rgba(63,63,70,.5);border:1px solid rgba(82,82,91,.6);
+}
 
-        /* Project card base styles and hover glow effect */
-        .project-card {
-            transition: all 0.3s ease-in-out;
-        }
-
-        .project-card:hover {
-            border-color: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 20px rgba(45, 212, 191, 0.1);
-            transform: scale(1.02);
-        }
-
-        /* Highlight effect for project cards */
-        #project-list:hover>.project-card {
-            opacity: 0.5;
-        }
-
-        #project-list>.project-card:hover {
-            opacity: 1;
-        }
-
-        /* Highlight effect for skill cards */
-        .skill-card {
-            transition: opacity 0.3s ease-in-out;
-        }
-
-        #skills-list:hover>.skill-card {
-            opacity: 0.5;
-        }
-
-        #skills-list>.skill-card:hover {
-            opacity: 1;
-        }
-    </style>
+  </style>
 </head>
-
 <body class="antialiased">
+  <div id="spotlight"></div>
 
-    <!-- The spotlight div that follows the cursor -->
-    <div id="spotlight"></div>
+  <!-- Header -->
+  <header id="header">
+    <div class="container mx-auto max-w-4xl px-6 py-6">
+      <div class="flex justify-between items-center">
+        <a href="#" class="text-xl font-bold tracking-wider text-white">Suhani Tyagi</a>
+        <nav class="flex items-center space-x-5">
+          <a href="https://github.com/inahus99" target="_blank" class="text-slate-400 hover:text-white transition-colors"><i data-lucide="github" class="w-5 h-5"></i></a>
+          <a href="https://www.linkedin.com/in/suhani-tyagi-63059b259" target="_blank" class="text-slate-400 hover:text-white transition-colors"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+          <a href="https://twitter.com" target="_blank" class="text-slate-400 hover:text-white transition-colors"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+          <a href="mailto:suhani05tyagi@gmail.com" target="_blank" class="text-slate-400 hover:text-white transition-colors"><i data-lucide="mail" class="w-5 h-5"></i></a>
+        </nav>
+      </div>
+    </div>
+  </header>
 
-    <!-- Header -->
-    <header id="header">
-        <div class="container mx-auto max-w-4xl px-6 py-6">
-            <div class="flex justify-between items-center">
-                <a href="#" class="text-xl font-bold tracking-wider text-white">Suhani Tyagi</a>
-                <nav class="flex items-center space-x-5">
-                    <a href="https://github.com/inahus99" target="_blank" rel="noopener noreferrer"
-                        class="text-slate-400 hover:text-white transition-colors duration-300"><i data-lucide="github"
-                            class="w-5 h-5"></i></a>
-                    <a href="https://www.linkedin.com/in/suhani-tyagi-63059b259?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
-                        target="_blank" rel="noopener noreferrer"
-                        class="text-slate-400 hover:text-white transition-colors duration-300"><i data-lucide="linkedin"
-                            class="w-5 h-5"></i></a>
-                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"
-                        class="text-slate-400 hover:text-white transition-colors duration-300"><i data-lucide="twitter"
-                            class="w-5 h-5"></i></a>
-                    <a href="mailto:suhani05tyagi@gmail.com" target="_blank" rel="noopener noreferrer"
-                        class="text-slate-400 hover:text-white transition-colors duration-300"><i data-lucide="mail"
-                            class="w-5 h-5"></i></a>
-                </nav>
-            </div>
-        </div>
-    </header>
+  <main class="container mx-auto max-w-4xl px-6">
+    <section id="hero" class="aurora-wrap pt-24 pb-12">
+  <!-- Aurora + Orbs background -->
+  <div class="aurora" id="aurora"></div>
+  <span class="orb"   style="top: 18%; left: 12%"></span>
+  <span class="orb --b" style="top: 46%; left: 32%"></span>
+  <span class="orb --c" style="top: 26%; right: 18%"></span>
+  <span class="orb"   style="bottom: 18%; right: 8%"></span>
 
-    <!-- Main Content Wrapper -->
-    <div id="main-content">
-        <main class="container mx-auto max-w-4xl px-6">
+  <div class="relative">
+    <h1 class="text-4xl md:text-6xl font-extrabold leading-[1.1] text-white">
+      Full-Stack <span class="bg-gradient-to-r from-teal-300 to-indigo-300 bg-clip-text text-transparent">Software Developer</span>
+    </h1>
+    <div class="title-underline"></div>
 
-            <!-- Hero Section -->
-            <section id="hero" class="flex flex-col justify-center pt-24 pb-12">
-                <h1 class="text-4xl md:text-5xl font-bold leading-tight text-white">Full-Stack Software Developer</h1>
-                <p class="mt-4 text-lg text-slate-400 max-w-2xl">
-                    Converting ideas to code.
-                </p>
-                <div class="mt-8 flex flex-wrap gap-4">
-                    <a href="#projects"
-                        class="inline-block bg-teal-400/10 text-teal-300 font-semibold px-6 py-2 rounded-full border border-teal-400/20 hover:bg-teal-400/20 transition-all duration-300">
-                        View Projects
-                    </a>
-                    <a href="https://drive.google.com/file/d/1mf7YUHxDf9YtINRUQkeqF_-Iou3PDFTK/view?usp=sharing"
-                        target="_blank" rel="noopener noreferrer"
-                        class="inline-block bg-slate-400/10 text-slate-300 font-semibold px-6 py-2 rounded-full border border-slate-400/20 hover:bg-slate-400/20 transition-all duration-300">
-                        View Resume
-                    </a>
-                </div>
-            </section>
+    <p class="mt-4 text-lg text-slate-400 max-w-2xl">
+      Converting ideas to code. Building fast, real-time, and scalable apps.
+    </p>
 
-       <!-- About Section -->
+    <div class="mt-8 flex flex-wrap gap-4">
+      <a href="#projects" class="cta cta-primary">
+        <i data-lucide="rocket" class="w-5 h-5"></i> View Projects
+      </a>
+      <a href="https://drive.google.com/file/d/1mf7YUHxDf9YtINRUQkeqF_-Iou3PDFTK/view"
+         target="_blank" rel="noopener" class="cta cta-ghost">
+        <i data-lucide="file-text" class="w-5 h-5"></i> View Resume
+      </a>
+    </div>
+
+    <!-- quick stats -->
+    <div class="mt-8 flex flex-wrap gap-3">
+      <div class="stat"><i data-lucide="folder-code" class="w-4 h-4 text-teal-300"></i><span class="text-slate-200 text-sm">10+ Projects</span></div>
+      <div class="stat"><i data-lucide="shield" class="w-4 h-4 text-indigo-300"></i><span class="text-slate-200 text-sm">LeetCode Knight</span></div>
+      <div class="stat"></i><span class="text-slate-200 text-sm">🟢 Open to Work</span></div>
+     
+    </div>
+  </div>
+</section>
+
 <section id="about" class="py-16 lg:py-20">
-  <div class="max-w-3xl mx-auto px-4">
-    <div
-      class="about-card relative bg-zinc-900/50 border border-zinc-800 rounded-2xl p-8 shadow-lg transform transition duration-300 ease-out hover:scale-102 hover:shadow-xl fade-up"
-    >
-      <h2 class="text-2xl lg:text-3xl font-bold text-white mb-4">About Me</h2>
-      <p class="text-slate-300 leading-relaxed mb-6">
-        I’m a fourth-year student passionate about full-stack development. I build
-        end-to-end applications with the <span class="font-semibold text-white">MERN stack</span>
-        (MongoDB, Express.js, React, Node.js) and love solving challenging LeetCode
-        problems—I've earned the Knight badge!
+  <div class="max-w-4xl mx-auto px-4">
+    <div class="about-card border border-zinc-800 rounded-2xl p-8 shadow-lg bg-white/70 backdrop-blur">
+      
+      <h2 class="text-2xl lg:text-3xl font-bold text-black mb-6">About Me</h2>
+      
+      <p class="text-black/80 leading-relaxed mb-8">
+        I’m a <span class="font-bold text-black">full-stack developer</span> passionate about building 
+        real-time, scalable, and practical applications.  
+        My recent work focuses on <span class="font-bold text-black">privacy, monitoring, and legal-tech tools</span>, 
+        where I combine strong engineering with modern stacks to solve real problems.
       </p>
 
-      <h3 class="text-xl font-semibold text-white mb-3">Key Projects</h3>
-      <ul class="list-inside list-disc space-y-2 text-slate-300">
-        <li>
-          <span class="font-semibold text-white">CURATIONS</span> – A smart bookmarking
-          platform supporting 4+ content types: links, notes, code snippets, and more.
-        </li>
-        <li>
-          <span class="font-semibold text-white">CLAUSEWISE</span> – An AI-powered legal
-          analyzer that parses and categorizes complex contract clauses.
-        </li>
-        <li>
-          <span class="font-semibold text-white">COMPLYSCAN</span> – A real-time web
-          auditor for GDPR/CCPA compliance, spotting hidden trackers, missing banners,
-          and over-persistent cookies.
-        </li>
-        <li>
-         
-  <span class="font-semibold text-white">LINKIFY</span> – An Application that instantly generates secure, expiring links for any file type.
-        </li>
-      </ul>
+      <div class="space-y-8">
+        
+        <div>
+          <h3 class="text-lg font-semibold text-black flex items-center gap-2">
+            <i data-lucide="cookie" class="w-5 h-5 text-amber-500"></i> ComplyScan
+          </h3>
+          <p class="text-black/80 text-sm mt-1">
+            A <span class="font-semibold text-black">real-time compliance scanner</span> that audits websites 
+            for GDPR/CCPA cookie violations and hidden trackers.
+          </p>
+          <ul class="text-black/80 text-sm mt-2 list-disc list-inside">
+            <li>Leverages <span class="font-bold text-black">headless browser automation</span> with Puppeteer for deep site analysis</li>
+            <li>Detects <span class="font-bold text-black">consent banners, 3P trackers, cookie lifetimes</span></li>
+            <li>Built with React, Node.js, <span class="font-bold text-black">Socket.io</span>, and D3.js</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-black flex items-center gap-2">
+            <i data-lucide="activity" class="w-5 h-5 text-sky-500"></i> Third-Eye
+          </h3>
+          <p class="text-black/80 text-sm mt-1">
+            A <span class="font-semibold text-black">website uptime & monitoring tool</span> with instant health checks, analytics, and alerting.
+          </p>
+          <ul class="text-black/80 text-sm mt-2 list-disc list-inside">
+            <li>Engineered for <span class="font-bold text-black">low-latency, distributed health checks</span> via a robust job queue</li>
+            <li>Provides real-time <span class="font-bold text-black">status dashboards & API health endpoints</span></li>
+            <li>Stack: React, Node.js, Express, MongoDB, deployed on Railway</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-black flex items-center gap-2">
+            <i data-lucide="file-text" class="w-5 h-5 text-fuchsia-500"></i> ClauseWise
+          </h3>
+          <p class="text-black/80 text-sm mt-1">
+            An <span class="font-semibold text-black">AI-powered legal-tech app</span> that extracts, analyzes, 
+            and explains clauses from long PDF contracts.
+          </p>
+          <ul class="text-black/80 text-sm mt-2 list-disc list-inside">
+            <li>Features an efficient <span class="font-bold text-black">document parsing and text extraction</span> pipeline</li>
+            <li>Built with React, Node.js, MongoDB and <span class="font-bold text-black">Gemini API</span></li>
+            <li>Focuses on deep <span class="font-bold text-black">semantic clause analysis</span> and summarization</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-10">
+        <a href="#projects" class="fact-chip bg-black text-white hover:bg-black/80 transition">
+           Explore My Projects
+        </a>
+      </div>
     </div>
   </div>
 </section>
 
 
-            <!-- Skills Section -->
-            <section id="skills" class="py-16 lg:py-20">
-                <div>
-                    <h2 class="text-2xl font-bold text-white mb-8">Skills & Technologies</h2>
-                    <div id="skills-list" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                        <div
-                            class="skill-card flex items-center space-x-3 bg-zinc-900/50 border border-zinc-800 rounded-lg p-4">
-                            <i data-lucide="database" class="w-6 h-6 text-teal-400"></i><span
-                                class="font-semibold text-slate-300">MongoDB</span></div>
-                        <div
-                            class="skill-card flex items-center space-x-3 bg-zinc-900/50 border border-zinc-800 rounded-lg p-4">
-                            <i data-lucide="server" class="w-6 h-6 text-teal-400"></i><span
-                                class="font-semibold text-slate-300">Express.js</span></div>
-                        <div
-                            class="skill-card flex items-center space-x-3 bg-zinc-900/50 border border-zinc-800 rounded-lg p-4">
-                            <i data-lucide="atom" class="w-6 h-6 text-teal-400"></i><span
-                                class="font-semibold text-slate-300">React</span></div>
-                        <div
-                            class="skill-card flex items-center space-x-3 bg-zinc-900/50 border border-zinc-800 rounded-lg p-4">
-                            <i data-lucide="leaf" class="w-6 h-6 text-teal-400"></i><span
-                                class="font-semibold text-slate-300">Node.js</span></div>
-                        <div
-                            class="skill-card flex items-center space-x-3 bg-zinc-900/50 border border-zinc-800 rounded-lg p-4">
-                            <i data-lucide="braces" class="w-6 h-6 text-teal-400"></i><span
-                                class="font-semibold text-slate-300">JavaScript</span></div>
-                                        <div class="skill-card flex items-center space-x-3 bg-zinc-900/50 border border-zinc-800 rounded-lg p-4">
-  <i data-lucide="braces" class="w-6 h-6 text-teal-400"></i>
-  <span class="font-semibold text-slate-300">Socket.io</span>
-</div>
 
-<div class="skill-card flex items-center space-x-3 bg-zinc-900/50 border border-zinc-800 rounded-lg p-4">
-  <i data-lucide="braces" class="w-6 h-6 text-teal-400"></i>
-  <span class="font-semibold text-slate-300">Puppeteer</span>
-</div>
+<section id="skills" class="py-16 lg:py-20">
+  <h2 class="text-2xl font-bold text-white mb-8">Skills & Technologies</h2>
 
-                        <div
-                            class="skill-card flex items-center space-x-3 bg-zinc-900/50 border border-zinc-800 rounded-lg p-4">
-                            <i data-lucide="wind" class="w-6 h-6 text-teal-400"></i><span
-                                class="font-semibold text-slate-300">Tailwind CSS</span></div>
-                        <div
-                            class="skill-card flex items-center space-x-3 bg-zinc-900/50 border border-zinc-800 rounded-lg p-4">
-                            <i data-lucide="code-2" class="w-6 h-6 text-teal-400"></i><span
-                                class="font-semibold text-slate-300">Supabase</span></div>
-                        <div
-                            class="skill-card flex items-center space-x-3 bg-zinc-900/50 border border-zinc-800 rounded-lg p-4">
-                            <i data-lucide="git-branch" class="w-6 h-6 text-teal-400"></i><span
-                                class="font-semibold text-slate-300">Git & GitHub</span></div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Projects Section -->
-            <section id="projects" class="py-16 lg:py-20">
-                <div>
-                    <h2 class="text-2xl font-bold text-white mb-8">Featured Projects</h2>
-                    <div id="project-list" class="grid md:grid-cols-2 gap-6">
-                        <a href="#project/project1"
-                            class="project-card block bg-zinc-900/50 border border-zinc-800 rounded-lg p-6 group transition-all duration-300">
-                            <h3 class="text-xl font-bold text-white mb-2">Curations</h3>
-                            <p class="text-slate-400 mb-4">A bookmarking app that lets users save and organize different
-                                types of content with real-time sync and media previews.</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span
-                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">JavaScript</span>
-                                    <span
-                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">React.js</span>
-                                <span
-                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">Node.js</span><span
-                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">Express</span><span
-                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">SupaBase</span>
-                            </div>
-                        </a>
-                        <a href="#project/project2"
-                            class="project-card block bg-zinc-900/50 border border-zinc-800 rounded-lg p-6 group transition-all duration-300">
-                            <h3 class="text-xl font-bold text-white mb-2">ClauseWise</h3>
-                            <p class="text-slate-400 mb-4">A legal-tech tool for intelligent clause management and
-                                analysis from legal documents.</p>
-                            <div class="flex flex-wrap gap-2"><span
-                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">JavaScript</span><span
-                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">React.js</span><span
-                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">Node.js</span>
-                                    <span
-                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">MongoDB</span>
-                            </div>
-                        </a>
-                        <a href="#project/project3"
-                            class="project-card block bg-zinc-900/50 border border-zinc-800 rounded-lg p-6 group transition-all duration-300">
-                            <h3 class="text-xl font-bold text-white mb-2">Linkify</h3>
-                            <p class="text-slate-400 mb-4">A streamlined utility for sharing any type of file using
-                                links only.</p>
-                            <div class="flex flex-wrap gap-2">
-                                  <span
-                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">JavaScript</span>
-                                      <span
-                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">React.js</span>
-                                <span
-                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">Node.js</span><span
-                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">Express</span><span
-                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">MongoDB Atlas</span>
-                            </div>
-                        </a>
-  <a href="#project/project4"
-                            class="project-card block bg-zinc-900/50 border border-zinc-800 rounded-lg p-6 group transition-all duration-300">
-                            <h3 class="text-xl font-bold text-white mb-2">ComplyScan</h3>
-                            <p class="text-slate-400 mb-4">ComplyScan is a real-time web auditing tool that scans any website for GDPR/CCPA violations—like hidden trackers, missing consent banners, and long-lived cookies
-                               </p>
-                            <div class="flex flex-wrap gap-2">
-                                  <span
-                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">JavaScript</span>
-                                      <span
-                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">Socket.io</span>
-                                <span
-                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">Node.js</span><span
-                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">Express</span><span
-                                    class="bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full">Puppeteer</span>
-                            </div>
-                        </a>
-                
-                </div>
-            </section>
-        </main>
-        <footer id="footer" class="border-t border-zinc-800/50">
-            <div class="container mx-auto max-w-4xl px-6 py-6 text-center text-slate-500">
-                &copy; 2025 @Suhani Tyagi.
-            </div>
-        </footer>
+  <div class="group grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+    <!-- Core -->
+    <div class="skill-pill border border-zinc-800 rounded-lg p-4 flex items-center space-x-3 transition-all group-hover:opacity-40 hover:!opacity-100 hover:-translate-y-0.5 hover:scale-[1.02]">
+      <i data-lucide="braces" class="w-6 h-6 text-teal-400"></i><span class="font-semibold text-slate-300">JavaScript (ESNext)</span>
+    </div>
+    <div class="skill-pill border border-zinc-800 rounded-lg p-4 flex items-center space-x-3 transition-all group-hover:opacity-40 hover:!opacity-100 hover:-translate-y-0.5 hover:scale-[1.02]">
+      <i data-lucide="atom" class="w-6 h-6 text-teal-400"></i><span class="font-semibold text-slate-300">React</span>
+    </div>
+    <div class="skill-pill border border-zinc-800 rounded-lg p-4 flex items-center space-x-3 transition-all group-hover:opacity-40 hover:!opacity-100 hover:-translate-y-0.5 hover:scale-[1.02]">
+      <i data-lucide="server" class="w-6 h-6 text-teal-400"></i><span class="font-semibold text-slate-300">Node.js</span>
+    </div>
+    <div class="skill-pill border border-zinc-800 rounded-lg p-4 flex items-center space-x-3 transition-all group-hover:opacity-40 hover:!opacity-100 hover:-translate-y-0.5 hover:scale-[1.02]">
+      <i data-lucide="cloud" class="w-6 h-6 text-teal-400"></i><span class="font-semibold text-slate-300">Express.js</span>
     </div>
 
-   <div id="project-detail-page" class="hidden">
-  <div class="mx-auto max-w-6xl px-6 py-20 lg:py-32 space-y-16">
-    <!-- Back link -->
-    <a href="#" class="flex items-center text-slate-400 hover:text-white transition-colors">
-      <i data-lucide="arrow-left" class="w-5 h-5 mr-2"></i> Back to All Projects
-    </a>
+    <!-- UI / Styling -->
+    <div class="skill-pill border border-zinc-800 rounded-lg p-4 flex items-center space-x-3 transition-all group-hover:opacity-40 hover:!opacity-100 hover:-translate-y-0.5 hover:scale-[1.02]">
+      <i data-lucide="layout" class="w-6 h-6 text-teal-400"></i><span class="font-semibold text-slate-300">Mantine UI</span>
+    </div>
+    <div class="skill-pill border border-zinc-800 rounded-lg p-4 flex items-center space-x-3 transition-all group-hover:opacity-40 hover:!opacity-100 hover:-translate-y-0.5 hover:scale-[1.02]">
+      <i data-lucide="layout-template" class="w-6 h-6 text-teal-400"></i><span class="font-semibold text-slate-300">Chakra UI</span>
+    </div>
+    <div class="skill-pill border border-zinc-800 rounded-lg p-4 flex items-center space-x-3 transition-all group-hover:opacity-40 hover:!opacity-100 hover:-translate-y-0.5 hover:scale-[1.02]">
+      <i data-lucide="palette" class="w-6 h-6 text-teal-400"></i><span class="font-semibold text-slate-300">Emotion (CSS-in-JS)</span>
+    </div>
+    <div class="skill-pill border border-zinc-800 rounded-lg p-4 flex items-center space-x-3 transition-all group-hover:opacity-40 hover:!opacity-100 hover:-translate-y-0.5 hover:scale-[1.02]">
+      <i data-lucide="wind" class="w-6 h-6 text-teal-400"></i><span class="font-semibold text-slate-300">Tailwind CSS</span>
+    </div>
 
-    <!-- Title -->
-    <header class="space-y-4">
-      <h1 id="project-title" class="text-4xl md:text-5xl font-extrabold text-white"></h1>
-      <div class="h-1 w-24 bg-teal-400"></div>
-    </header>
+    <!-- Build tools -->
+    <div class="skill-pill border border-zinc-800 rounded-lg p-4 flex items-center space-x-3 transition-all group-hover:opacity-40 hover:!opacity-100 hover:-translate-y-0.5 hover:scale-[1.02]">
+      <i data-lucide="bolt" class="w-6 h-6 text-teal-400"></i><span class="font-semibold text-slate-300">Vite</span>
+    </div>
+    <div class="skill-pill border border-zinc-800 rounded-lg p-4 flex items-center space-x-3 transition-all group-hover:opacity-40 hover:!opacity-100 hover:-translate-y-0.5 hover:scale-[1.02]">
+      <i data-lucide="package" class="w-6 h-6 text-teal-400"></i><span class="font-semibold text-slate-300">Parcel</span>
+    </div>
+    <div class="skill-pill border border-zinc-800 rounded-lg p-4 flex items-center space-x-3 transition-all group-hover:opacity-40 hover:!opacity-100 hover:-translate-y-0.5 hover:scale-[1.02]">
+      <i data-lucide="sliders-horizontal" class="w-6 h-6 text-teal-400"></i><span class="font-semibold text-slate-300">PostCSS</span>
+    </div>
 
-    <!-- Overview -->
-    <section class="space-y-6">
-      <h2 class="text-2xl font-bold text-white">Project Overview</h2>
-      <div id="project-description" class="prose prose-invert max-w-none text-slate-300"></div>
-      <div id="project-links" class="flex flex-wrap gap-4"></div>
-    </section>
+    <!-- Realtime / Automation -->
+    <div class="skill-pill border border-zinc-800 rounded-lg p-4 flex items-center space-x-3 transition-all group-hover:opacity-40 hover:!opacity-100 hover:-translate-y-0.5 hover:scale-[1.02]">
+      <i data-lucide="share-2" class="w-6 h-6 text-teal-400"></i><span class="font-semibold text-slate-300">Socket.io</span>
+    </div>
+    <div class="skill-pill border border-zinc-800 rounded-lg p-4 flex items-center space-x-3 transition-all group-hover:opacity-40 hover:!opacity-100 hover:-translate-y-0.5 hover:scale-[1.02]">
+      <i data-lucide="bot" class="w-6 h-6 text-teal-400"></i><span class="font-semibold text-slate-300">Puppeteer</span>
+    </div>
 
-    <!-- Media Grid: Video + Gallery side‑by‑side on large screens -->
-    <section class="grid gap-10 lg:grid-cols-2">
-      <!-- Responsive 16:9 video wrapper -->
-      <div id="video-section" class="hidden rounded-3xl overflow-hidden border border-zinc-800 shadow-xl">
-        <div class="relative w-full pb-[56.25%]">
-          <iframe id="project-video" class="absolute inset-0 h-full w-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <!-- Data & time -->
+    <div class="skill-pill border border-zinc-800 rounded-lg p-4 flex items-center space-x-3 transition-all group-hover:opacity-40 hover:!opacity-100 hover:-translate-y-0.5 hover:scale-[1.02]">
+      <i data-lucide="bar-chart-2" class="w-6 h-6 text-teal-400"></i><span class="font-semibold text-slate-300">Chart.js</span>
+    </div>
+    <div class="skill-pill border border-zinc-800 rounded-lg p-4 flex items-center space-x-3 transition-all group-hover:opacity-40 hover:!opacity-100 hover:-translate-y-0.5 hover:scale-[1.02]">
+      <i data-lucide="calendar" class="w-6 h-6 text-teal-400"></i><span class="font-semibold text-slate-300">Day.js</span>
+    </div>
+    <div class="skill-pill border border-zinc-800 rounded-lg p-4 flex items-center space-x-3 transition-all group-hover:opacity-40 hover:!opacity-100 hover:-translate-y-0.5 hover:scale-[1.02]">
+      <i data-lucide="link" class="w-6 h-6 text-teal-400"></i><span class="font-semibold text-slate-300">Axios</span>
+    </div>
+
+    <!-- Database / cache -->
+    <div class="skill-pill border border-zinc-800 rounded-lg p-4 flex items-center space-x-3 transition-all group-hover:opacity-40 hover:!opacity-100 hover:-translate-y-0.5 hover:scale-[1.02]">
+      <i data-lucide="database" class="w-6 h-6 text-teal-400"></i><span class="font-semibold text-slate-300">MongoDB</span>
+    </div>
+    <div class="skill-pill border border-zinc-800 rounded-lg p-4 flex items-center space-x-3 transition-all group-hover:opacity-40 hover:!opacity-100 hover:-translate-y-0.5 hover:scale-[1.02]">
+      <i data-lucide="database-backup" class="w-6 h-6 text-teal-400"></i><span class="font-semibold text-slate-300">Mongoose</span>
+    </div>
+    <div class="skill-pill border border-zinc-800 rounded-lg p-4 flex items-center space-x-3 transition-all group-hover:opacity-40 hover:!opacity-100 hover:-translate-y-0.5 hover:scale-[1.02]">
+      <i data-lucide="server-crash" class="w-6 h-6 text-teal-400"></i><span class="font-semibold text-slate-300">Redis (ioredis)</span>
+    </div>
+
+    <!-- Security & utils -->
+    <div class="skill-pill border border-zinc-800 rounded-lg p-4 flex items-center space-x-3 transition-all group-hover:opacity-40 hover:!opacity-100 hover:-translate-y-0.5 hover:scale-[1.02]">
+      <i data-lucide="shield" class="w-6 h-6 text-teal-400"></i><span class="font-semibold text-slate-300">Helmet</span>
+    </div>
+    <div class="skill-pill border border-zinc-800 rounded-lg p-4 flex items-center space-x-3 transition-all group-hover:opacity-40 hover:!opacity-100 hover:-translate-y-0.5 hover:scale-[1.02]">
+      <i data-lucide="zap" class="w-6 h-6 text-teal-400"></i><span class="font-semibold text-slate-300">Express-rate-limit</span>
+    </div>
+    <div class="skill-pill border border-zinc-800 rounded-lg p-4 flex items-center space-x-3 transition-all group-hover:opacity-40 hover:!opacity-100 hover:-translate-y-0.5 hover:scale-[1.02]">
+      <i data-lucide="cookie" class="w-6 h-6 text-teal-400"></i><span class="font-semibold text-slate-300">Cookie-Parser</span>
+    </div>
+    <div class="skill-pill border border-zinc-800 rounded-lg p-4 flex items-center space-x-3 transition-all group-hover:opacity-40 hover:!opacity-100 hover:-translate-y-0.5 hover:scale-[1.02]">
+      <i data-lucide="settings" class="w-6 h-6 text-teal-400"></i><span class="font-semibold text-slate-300">dotenv</span>
+    </div>
+
+    <!-- Domain & email -->
+    <div class="skill-pill border border-zinc-800 rounded-lg p-4 flex items-center space-x-3 transition-all group-hover:opacity-40 hover:!opacity-100 hover:-translate-y-0.5 hover:scale-[1.02]">
+      <i data-lucide="globe" class="w-6 h-6 text-teal-400"></i><span class="font-semibold text-slate-300">psl</span>
+    </div>
+    <div class="skill-pill border border-zinc-800 rounded-lg p-4 flex items-center space-x-3 transition-all group-hover:opacity-40 hover:!opacity-100 hover:-translate-y-0.5 hover:scale-[1.02]">
+      <i data-lucide="globe-2" class="w-6 h-6 text-teal-400"></i><span class="font-semibold text-slate-300">tldts</span>
+    </div>
+    <div class="skill-pill border border-zinc-800 rounded-lg p-4 flex items-center space-x-3 transition-all group-hover:opacity-40 hover:!opacity-100 hover:-translate-y-0.5 hover:scale-[1.02]">
+      <i data-lucide="search" class="w-6 h-6 text-teal-400"></i><span class="font-semibold text-slate-300">whois-json</span>
+    </div>
+    <div class="skill-pill border border-zinc-800 rounded-lg p-4 flex items-center space-x-3 transition-all group-hover:opacity-40 hover:!opacity-100 hover:-translate-y-0.5 hover:scale-[1.02]">
+      <i data-lucide="mail" class="w-6 h-6 text-teal-400"></i><span class="font-semibold text-slate-300">Resend API</span>
+    </div>
+
+    <!-- Version control -->
+    <div class="skill-pill border border-zinc-800 rounded-lg p-4 flex items-center space-x-3 transition-all group-hover:opacity-40 hover:!opacity-100 hover:-translate-y-0.5 hover:scale-[1.02]">
+      <i data-lucide="git-branch" class="w-6 h-6 text-teal-400"></i><span class="font-semibold text-slate-300">Git & GitHub</span>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Projects -->
+<section id="projects" class="py-16 lg:py-20">
+  <div class="mb-8">
+    <h2 class="text-2xl font-bold text-white">Featured Projects</h2>
+    <div class="underline-bling mt-3 rounded-full"></div>
+  </div>
+
+  <!-- group dims non-hovered cards -->
+  <div class="group grid md:grid-cols-2 gap-8 items-stretch">
+
+
+<!-- Third-Eye -->
+<article
+  class="glow-card project-card rounded-lg border border-zinc-800 glass flex flex-col h-full
+         transition-all duration-300 group-hover:opacity-50 hover:!opacity-100 hover:-translate-y-1.5 hover:-rotate-[.25deg]">
+  <div class="relative">
+    <!-- Replace the image URL with your screenshot if you like -->
+    <img
+      src="https://i.ibb.co/nsfry7dK/Screenshot-2025-08-24-140447.png"
+      alt="Third-Eye Screenshot"
+      class="w-full h-60 object-cover border-b border-zinc-800" />
+    <span class="absolute top-3 right-3 text-[10px] px-2 py-1 rounded-full bg-sky-400/10 border border-sky-300/30 text-sky-200">
+      Monitoring
+    </span>
+  </div>
+
+  <div class="p-6 flex flex-col flex-grow">
+    <div class="flex items-center gap-2 mb-1">
+      <h3 class="text-xl font-bold text-white">Third-Eye</h3>
+      <span class="inline-flex items-center gap-1 text-[11px] px-2 py-[2px] rounded-full bg-sky-400/10 border border-sky-300/30 text-sky-200">
+        <i data-lucide="activity" class="w-3.5 h-3.5"></i> Uptime & Alerts
+      </span>
+    </div>
+
+    <div class="flex flex-wrap gap-2 mb-6">
+      <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">JavaScript</span>
+      <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">React</span>
+      <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">Socket.io</span>
+      <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">Express</span>
+      <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">MongoDB Atlas</span>
+        <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">Chakra UI</span>
+           <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">Emotion</span>
+            <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">Framer Motion</span>
+            <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">Chart.js</span>
+    </div>
+
+    <div class="mt-auto flex items-center gap-3">
+      <!-- If these are correct for you, drop them in -->
+      <a href="https://third-eye-mu.vercel.app/" target="_blank" class="btn btn-live hover:scale-[1.03]">
+        <i data-lucide="rocket" class="w-4 h-4"></i> Live Demo
+      </a>
+      <a href="https://github.com/inahus99/ThirdEye" target="_blank" class="btn btn-gh hover:scale-[1.03]">
+        <i data-lucide="github" class="w-4 h-4"></i> GitHub
+      </a>
+    </div>
+  </div>
+</article>
+   <!-- ComplyScan -->
+<article
+  class="glow-card project-card rounded-lg border border-zinc-800 glass flex flex-col h-full
+         transition-all duration-300 group-hover:opacity-50 hover:!opacity-100 hover:-translate-y-1.5 hover:rotate-[.25deg]">
+  <div class="relative">
+    <!-- Replace the image URL with your screenshot -->
+    <img
+      src="https://i.ibb.co/Q7j61vBg/Screenshot-2025-08-24-141041.png"
+      alt="ComplyScan Screenshot"
+      class="w-full h-60 object-cover border-b border-zinc-800" />
+    <span class="absolute top-3 right-3 text-[10px] px-2 py-1 rounded-full bg-amber-400/10 border border-amber-300/30 text-amber-200">
+      Privacy
+    </span>
+  </div>
+
+  <div class="p-6 flex flex-col flex-grow">
+    <div class="flex items-center gap-2 mb-1">
+      <h3 class="text-xl font-bold text-white">ComplyScan</h3>
+      <span class="inline-flex items-center gap-1 text-[11px] px-2 py-[2px] rounded-full bg-amber-400/10 border border-amber-300/30 text-amber-200">
+        <i data-lucide="cookie" class="w-3.5 h-3.5"></i> GDPR/CCPA
+      </span>
+    </div>
+
+
+    <!-- Stack tags -->
+    <div class="flex flex-wrap gap-2 mb-6">
+      <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">React</span>
+      <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">Mantine UI</span>
+      <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">Emotion</span>
+      <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">Framer Motion</span>
+      <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">Node.js</span>
+      <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">Express</span>
+      <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">Socket.io</span>
+      <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">Puppeteer</span>
+    </div>
+
+    <!-- Buttons -->
+    <div class="mt-auto flex items-center gap-3">
+      <a href="https://complyscan.netlify.app" target="_blank" class="btn btn-live hover:scale-[1.03]">
+        <i data-lucide="rocket" class="w-4 h-4"></i> Live Demo
+      </a>
+      <a href="https://github.com/inahus99/ComplyScan" target="_blank" class="btn btn-gh hover:scale-[1.03]">
+        <i data-lucide="github" class="w-4 h-4"></i> GitHub
+      </a>
+    </div>
+  </div>
+</article>
+
+    <!-- Curations -->
+    <article
+      class="glow-card project-card rounded-lg border border-zinc-800 glass flex flex-col h-full
+             transition-all duration-300 group-hover:opacity-50 hover:!opacity-100 hover:-translate-y-1.5 hover:rotate-[.25deg]">
+      <div class="relative">
+        <img
+          src="https://i.ibb.co/BH9kkpT9/Screenshot-2025-07-31-203129.png"
+          alt="Curations Screenshot"
+          class="w-full h-60 object-cover border-b border-zinc-800" />
+        <!-- corner badge -->
+        <span class="absolute top-3 right-3 text-[10px] px-2 py-1 rounded-full bg-teal-400/10 border border-teal-300/30 text-teal-200">
+          PWA
+        </span>
+      </div>
+
+      <div class="p-6 flex flex-col flex-grow">
+        <div class="flex items-center gap-2 mb-1">
+          <h3 class="text-xl font-bold text-white">Curations</h3>
+          <span class="inline-flex items-center gap-1 text-[11px] px-2 py-[2px] rounded-full bg-emerald-400/10 border border-emerald-300/30 text-emerald-200">
+            <i data-lucide="zap" class="w-3.5 h-3.5"></i> Realtime
+          </span>
+        </div>
+
+        <!-- tags (now pill-glass) -->
+        <div class="flex flex-wrap gap-2 mb-6">
+          <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">JavaScript</span>
+          <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">React</span>
+          <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">Markdown & Media</span>
+          <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">Supabase</span>
+        </div>
+
+        <!-- buttons row sticks to bottom -->
+        <div class="mt-auto flex items-center gap-3">
+          <a href="https://curations-vert.vercel.app/" target="_blank" class="btn btn-live hover:scale-[1.03]">
+            <i data-lucide="rocket" class="w-4 h-4"></i> Live Demo
+          </a>
+          <a href="https://github.com/inahus99/Curations" target="_blank" class="btn btn-gh hover:scale-[1.03]">
+            <i data-lucide="github" class="w-4 h-4"></i> GitHub
+          </a>
         </div>
       </div>
+    </article>
 
-      <!-- Image Gallery -->
-      <div class="space-y-4">
-        <h2 class="text-2xl font-bold text-white">Image Gallery</h2>
-        <div id="project-gallery" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+    <!-- ClauseWise -->
+    <article
+      class="glow-card project-card rounded-lg border border-zinc-800 glass flex flex-col h-full
+             transition-all duration-300 group-hover:opacity-50 hover:!opacity-100 hover:-translate-y-1.5 hover:-rotate-[.25deg]">
+      <div class="relative">
+        <img
+          src="https://i.ibb.co/tF0XCGc/Screenshot-2025-07-30-173648.png"
+          alt="ClauseWise Screenshot"
+          class="w-full h-60 object-cover border-b border-zinc-800" />
+        <span class="absolute top-3 right-3 text-[10px] px-2 py-1 rounded-full bg-fuchsia-400/10 border border-fuchsia-300/30 text-fuchsia-200">
+          AI
+        </span>
       </div>
-    </section>
 
-    <!-- Tech Stack -->
-    <section>
-      <h2 class="text-2xl font-bold text-white mb-4">Tech Stack</h2>
-      <div id="project-tech-stack" class="flex flex-wrap gap-2"></div>
-    </section>
+      <div class="p-6 flex flex-col flex-grow">
+        <div class="flex items-center gap-2 mb-1">
+          <h3 class="text-xl font-bold text-white">ClauseWise</h3>
+          <span class="inline-flex items-center gap-1 text-[11px] px-2 py-[2px] rounded-full bg-fuchsia-400/10 border border-fuchsia-300/30 text-fuchsia-200">
+            <i data-lucide="brain" class="w-3.5 h-3.5"></i> NLP
+          </span>
+        </div>
+
+        <div class="flex flex-wrap gap-2 mb-6">
+          <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">JavaScript</span>
+          <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">React</span>
+          <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">Tailwind CSS</span>
+          <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">Multer</span>
+                  <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">Gemini API</span>
+        </div>
+
+        <div class="mt-auto flex items-center gap-3">
+          <a href="https://clause-wise.vercel.app/" target="_blank" class="btn btn-live hover:scale-[1.03]">
+            <i data-lucide="rocket" class="w-4 h-4"></i> Live Demo
+          </a>
+          <a href="https://github.com/inahus99/clauseWise" target="_blank" class="btn btn-gh hover:scale-[1.03]">
+            <i data-lucide="github" class="w-4 h-4"></i> GitHub
+          </a>
+        </div>
+      </div>
+    </article>
+    
   </div>
-</div>
+</section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- DATA ---
-            const projectsData = {
-                'project1': {
-                    title: 'Curations',
-                    description: `
-  <p>A bookmarking app that lets users save and organize different types of content with real-time sync and media previews.</p>
-`,
-                    liveDemoUrl: 'https://curations-vert.vercel.app/',
-                    githubUrl: 'https://github.com/inahus99/Curations',
-                    videoUrl: 'https://www.youtube.com/embed/kazQYEIR-zg?rel=0', 
-                    images: [
-                        'https://i.ibb.co/BH9kkpT9/Screenshot-2025-07-31-203129.png',
-                        'http://i.ibb.co/67dPf3Pc/Screenshot-2025-07-31-203259.png'
-                    ],
-                    techStack: ['JavaScript', 'React.js', 'Node.js', 'Supabase', 'Tailwind CSS']
-                },
-                'project2': {
-                    title: 'ClauseWise',
-                    description: `<p>A streamlined utility for shortening and managing web links efficiently. Built with a Node.js backend and a clean, responsive interface.</p>`,
-                     liveDemoUrl: 'https://clause-wise.vercel.app/',
-                    githubUrl: 'https://github.com/inahus99/clauseWise',
-                    videoUrl: 'https://www.youtube.com/embed/YWTO2TKXDCg?ref=0',
-                    images: [
-                        'https://i.ibb.co/tF0XCGc/Screenshot-2025-07-30-173648.png',
-                        'https://i.ibb.co/dJrstgmk/Screenshot-2025-07-31-102411.png'
-                    ],
-                    techStack: ['JavaScript','React.js','Node.js', 'Express', 'MongoDB']
-                },
-                'project3': {
-                    title: 'Linkify',
-                    description: `<p>A streamlined utility for sharing any type of file with a link only.</p><p>more about Application in github link below.</p>`,
-                    githubUrl: 'https://github.com/inahus99/Linkify',
-                    videoUrl: "https://www.youtube.com/embed/FtkX-MdfY-U?rel=0",
-                    images: [
-                        'https://i.ibb.co/7wq7xyx/Screenshot-2025-07-30-175712.png',
-                        'https://i.ibb.co/bRBcVmKV/Screenshot-2025-07-30-180138.png'
-                    ],
-                    techStack: ['React.js', 'Node.js', 'Express', 'MongoDB Atlas']
-                },
-                 'project4': {
-                    title: 'ComplyScan',
-                    description: `<p>ComplyScan is a real-time web auditing tool that scans any website for GDPR/CCPA violations—like hidden trackers, missing consent banners, and long-lived cookies.</p>`,
-                    githubUrl: 'https://github.com/inahus99/ComplyScan',
-                       
-                    videoUrl: "https://www.youtube.com/embed/miWawT_hv88?rel=0",
-                    images: [
-                        'https://i.ibb.co/N6p2jSvY/Screenshot-2025-08-01-124817.png',
-                        'https://i.ibb.co/gbP98rNF/Screenshot-2025-08-01-122803.png'
-                    ],
-                    techStack: ['React.js', 'Node.js', 'Express', 'MongoDB Atlas']
-                }
 
-            };
+  </main>
 
-            // --- DOM Elements ---
-            const mainContent = document.getElementById('main-content');
-            const projectDetailPage = document.getElementById('project-detail-page');
-            const projectTitleEl = document.getElementById('project-title');
-            const projectDescriptionEl = document.getElementById('project-description');
-            const projectLinksEl = document.getElementById('project-links');
-            const videoSectionEl = document.getElementById('video-section');
-            const projectVideoEl = document.getElementById('project-video');
-            const projectGalleryEl = document.getElementById('project-gallery');
-            const projectTechStackEl = document.getElementById('project-tech-stack');
-            const spotlight = document.getElementById('spotlight');
+  <footer class="border-t border-zinc-800/50">
+    <div class="container mx-auto max-w-4xl px-6 py-6 text-center text-slate-500">
+      2025 @ Suhani Tyagi-ALL RIGHTS RESERVED.
+    </div>
+  </footer>
 
-            // --- Router ---
-            const router = () => {
-                const hash = window.location.hash || '#';
-                if (hash.startsWith('#project/')) {
-                    const projectId = hash.substring('#project/'.length);
-                    renderProjectPage(projectId);
-                } else {
-                    renderMainPage();
-                }
-            };
-
-            // --- Render Functions ---
-            const renderMainPage = () => {
-                projectDetailPage.classList.add('hidden');
-                mainContent.classList.remove('hidden');
-            };
-
-            const renderProjectPage = (projectId) => {
-                const project = projectsData[projectId];
-                if (!project) { window.location.hash = '#'; return; }
-                mainContent.classList.add('hidden');
-                projectDetailPage.classList.remove('hidden');
-
-                projectTitleEl.textContent = project.title;
-                projectDescriptionEl.innerHTML = project.description;
-
-                projectLinksEl.innerHTML = '';
-                if (project.githubUrl) {
-                    projectLinksEl.innerHTML += `
-                        <a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-slate-400/10 text-slate-300 font-semibold px-4 py-2 rounded-full border border-slate-400/20 hover:bg-slate-400/20 transition-all duration-300">
-                            <i data-lucide="github" class="w-4 h-4 mr-2"></i> GitHub
-                        </a>`;
-                }
-                if (project.liveDemoUrl) {
-                    projectLinksEl.innerHTML += `
-            <a href="${project.liveDemoUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-teal-400/10 text-teal-300 font-semibold px-4 py-2 rounded-full border border-teal-400/20 hover:bg-teal-400/20 transition-all duration-300">
-              <i data-lucide="external-link" class="w-4 h-4 mr-2"></i> Live Demo
-            </a>`;
-                }
-                if (project.videoUrl) {
-                    videoSectionEl.classList.remove('hidden');
-                    projectVideoEl.src = project.videoUrl;
-                } else {
-                    videoSectionEl.classList.add('hidden');
-                }
-
-                projectGalleryEl.innerHTML = '';
-                if (project.images && Array.isArray(project.images)) {
-                    project.images.forEach(src => {
-                        const img = document.createElement('img');
-                        img.src = src;
-                        img.alt = `${project.title} screenshot`;
-                        img.className = 'rounded-lg border border-zinc-800 w-full object-cover';
-                        img.onerror = () => { img.src = 'https://placehold.co/600x400/000000/FFFFFF?text=Image+Not+Found'; };
-                        projectGalleryEl.appendChild(img);
-                    });
-                }
-
-                projectTechStackEl.innerHTML = '';
-                if (project.techStack && Array.isArray(project.techStack)) {
-                    project.techStack.forEach(tech => {
-                        const span = document.createElement('span');
-                        span.className = 'bg-teal-400/10 text-teal-300 text-xs font-semibold px-2.5 py-1 rounded-full';
-                        span.textContent = tech;
-                        projectTechStackEl.appendChild(span);
-                    });
-                }
-
-                lucide.createIcons();
-                window.scrollTo(0, 0);
-            };
-
-            // --- Event Listeners ---
-            window.addEventListener('hashchange', router);
-
-            // General mousemove for the aurora spotlight
-            window.addEventListener('mousemove', (e) => {
-                spotlight.style.left = e.clientX + 'px';
-                spotlight.style.top = e.clientY + 'px';
-            });
-
-            router(); 
-
-            lucide.createIcons();
-        });
-    </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const spotlight = document.getElementById('spotlight');
+      window.addEventListener('mousemove', (e) => {
+        spotlight.style.left = e.clientX + 'px';
+        spotlight.style.top  = e.clientY + 'px';
+      });
+      lucide.createIcons();
+    });
+  </script>
 </body>
-
 </html>
