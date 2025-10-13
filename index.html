@@ -219,7 +219,7 @@ window.addEventListener('mousemove', (e) => {
       <a href="#projects" class="cta cta-primary">
         <i data-lucide="rocket" class="w-5 h-5"></i> View Projects
       </a>
-      <a href="https://drive.google.com/file/d/1mf7YUHxDf9YtINRUQkeqF_-Iou3PDFTK/view"
+      <a href="https://drive.google.com/file/d/16ndjqsNp1zybsuuqd4D1fyJpCvV8tA_R/view?usp=drive_link"
          target="_blank" rel="noopener" class="cta cta-ghost">
         <i data-lucide="file-text" class="w-5 h-5"></i> View Resume
       </a>
@@ -604,7 +604,85 @@ window.addEventListener('mousemove', (e) => {
         </div>
       </div>
     </article>
+
+<!-- FOR CRDT -->
+ <article
+    class="glow-card project-card rounded-lg border border-zinc-800 glass flex flex-col h-full
+            transition-all duration-300 group-hover:opacity-50 hover:!opacity-100 hover:-translate-y-1.5 hover:-rotate-[.25deg]">
+    <div class="relative">
+    <img
+        src="https://i.ibb.co/1Jf8VvLs/Screenshot-2025-10-03-180627.png"
+        alt="CRDT Collaborative Editor Demo"
+        class="w-full h-60 object-cover border-b border-zinc-800" />
+    <span class="absolute top-3 right-3 text-[10px] px-2 py-1 rounded-full bg-blue-400/10 border border-blue-300/30 text-blue-200">
+        Real-time
+    </span>
+    </div>
+
+    <div class="p-6 flex flex-col flex-grow">
+    <div class="flex items-center gap-2 mb-1">
+        <h3 class="text-xl font-bold text-white">CRDT Collaborative Editor</h3>
+        <span class="inline-flex items-center gap-1 text-[11px] px-2 py-[2px] rounded-full bg-blue-400/10 border border-blue-300/30 text-blue-200">
+        <i data-lucide="share-2" class="w-3.5 h-3.5"></i> WebSockets
+        </span>
+    </div>
+
+    <div class="flex flex-wrap gap-2 mb-6">
+        <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">React</span>
+        <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">Node.js</span>
+        <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">Express</span>
+        <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">Tailwind CSS</span>
+        <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">WebSockets</span>
+        <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">Yjs</span>
+    </div>
+
+    <div class="mt-auto flex items-center gap-3">
+        <a href="https://github.com/inahus99/CRDT-collaborative-editor" target="_blank" class="btn btn-gh hover:scale-[1.03]">
+        <i data-lucide="github" class="w-4 h-4"></i> GitHub
+        </a>
+    </div>
+    </div>
+</article>
     
+<!-- FOR REDICORE -->
+<article
+    class="glow-card project-card rounded-lg border border-zinc-800 glass flex flex-col h-full
+            transition-all duration-300 group-hover:opacity-50 hover:!opacity-100 hover:-translate-y-1.5 hover:-rotate-[.25deg]">
+    <div class="relative">
+    <img
+        src="https://i.ibb.co/69HxRyR/Screenshot-2025-10-08-195905.png"  alt="Redis Clone Architecture"
+        class="w-full h-60 object-cover border-b border-zinc-800" />
+    <span class="absolute top-3 right-3 text-[10px] px-2 py-1 rounded-full bg-red-400/10 border border-red-300/30 text-red-200">
+        Database
+    </span>
+    </div>
+
+    <div class="p-6 flex flex-col flex-grow">
+    <div class="flex items-center gap-2 mb-1">
+        <h3 class="text-xl font-bold text-white">redicore-In-Memory KV Store </h3>
+        <span class="inline-flex items-center gap-1 text-[11px] px-2 py-[2px] rounded-full bg-red-400/10 border border-red-300/30 text-red-200">
+        <i data-lucide="server" class="w-3.5 h-3.5"></i> TCP Server
+        </span>
+    </div>
+
+     <div class="flex flex-wrap gap-2 mb-6">
+      <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">Node.js</span>
+      <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">TCP</span>
+      <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">RESP</span>
+      <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">TTL</span>
+      <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">Lists</span>
+      <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">RDB Snapshot</span>
+      <span class="tag text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-300/20 bg-teal-400/5">AOF</span>
+    </div>
+
+    <div class="mt-auto flex items-center gap-3">
+        <a href="https://github.com/inahus99/RediCore" target="_blank" class="btn btn-gh hover:scale-[1.03]">
+        <i data-lucide="github" class="w-4 h-4"></i> GitHub
+        </a>
+    </div>
+    </div>
+</article>
+
   </div>
 </section>
 
